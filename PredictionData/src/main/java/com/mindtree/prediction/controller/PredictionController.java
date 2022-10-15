@@ -12,13 +12,13 @@ import com.mindtree.prediction.entity.CountryEntity;
 import com.mindtree.prediction.service.PredictionService;
 
 @RestController
-@RequestMapping("/prediction")
+@RequestMapping("/data")
 public class PredictionController {
 
 	@Autowired
 	private PredictionService service;
 
-	@GetMapping("/getCountry")
+	@GetMapping("/countries")
 	public ResponseEntity<List<CountryEntity>> getCountryName() {
 		return service.getCountryName();
 	}
