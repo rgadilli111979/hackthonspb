@@ -2,7 +2,9 @@ package com.mindtree.prediction.service;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +29,16 @@ public class PredictionService {
 
 	@Autowired
 	InsurerRepo insurerRepo;
-	
+
 	@Autowired
 	CustomerRepo customerRepo;
-	
+
 	@Autowired
 	PolicyRepo policyRepo;
-	
+
 //	@Autowired
 //	PaymentRepo paymentRepo;
-	
+
 	public ResponseEntity<List<CountryEntity>> getCountryName() {
 
 		List<CountryEntity> countryList = countryRepo.findAll();
@@ -77,7 +79,14 @@ public class PredictionService {
 		}
 	}
 
-	public List<PolicyEntity> getPolivciesExpiringSoon(int days) {
+	public ResponseEntity<List<PolicyEntity>> getPolivciesExpiringSoon(int days) {
+		return new ResponseEntity<>(getPolivciesExpiringSoonPrivate(days), HttpStatus.OK);
+
+		// return null;
+	}
+
+	private List<PolicyEntity> getPolivciesExpiringSoonPrivate(int days) {
+
 		long millis = System.currentTimeMillis();
 		java.util.Date date = new java.util.Date(millis);
 
@@ -87,14 +96,29 @@ public class PredictionService {
 		System.out.println(date);
 		return policyRepo.findAllByPolicyExpirationDateBetween(sqlDate.toString(), addDays(sqlDate, days));
 
-		//return null;
+		// return null;
+
 	}
 
 	private static String addDays(Date date, int days) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		c.add(Calendar.DATE, days);
+		if (days > 7) {
+			c.add(Calendar.MONTH, Math.round(days / 30));
+		} else {
+			c.add(Calendar.DATE, days);
+		}
 		return new Date(c.getTimeInMillis()).toString();
 	}
-	
+
+	public ResponseEntity<Map<String, Integer>> getExpiringSoonCountInDateRange() {
+		Map<String, Integer> dateRangeExpireCount = new HashMap<String, Integer>();
+
+		dateRangeExpireCount.put("1 WEEK", getPolivciesExpiringSoonPrivate(7).size());
+		dateRangeExpireCount.put("1 MONTH", getPolivciesExpiringSoonPrivate(32).size());
+		dateRangeExpireCount.put("2 MONTHS", getPolivciesExpiringSoonPrivate(66).size());
+		dateRangeExpireCount.put("3 MONTHS", getPolivciesExpiringSoonPrivate(95).size());
+		return new ResponseEntity<>(dateRangeExpireCount, HttpStatus.OK);
+	}
+
 }

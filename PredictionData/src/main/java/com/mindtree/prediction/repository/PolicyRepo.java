@@ -12,4 +12,4 @@ public interface PolicyRepo extends JpaRepository<PolicyEntity, String> {
 
 	List<PolicyEntity> findAllByPolicyExpirationDateBetween(String currentData, String targetDate);
 
-}
+}	

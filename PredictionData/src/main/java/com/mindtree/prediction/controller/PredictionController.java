@@ -1,6 +1,7 @@
 package com.mindtree.prediction.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,13 @@ public class PredictionController {
 	}
 	
 	@GetMapping("/expiringSoon/{days}")
-    public List<PolicyEntity> getPolivciesExpiringSoon(@PathVariable int days) {
+    public ResponseEntity<List<PolicyEntity>> getPolivciesExpiringSoon(@PathVariable int days) {
         return service.getPolivciesExpiringSoon(days);
+    }
+	
+	@GetMapping("/expiringSoonCountInDateRange")
+    public ResponseEntity<Map<String,Integer>> getExpiringSoonCountInDateRange() {
+        return service.getExpiringSoonCountInDateRange();
     }
 	
 }
