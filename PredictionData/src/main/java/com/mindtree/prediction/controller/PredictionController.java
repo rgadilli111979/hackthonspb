@@ -5,10 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mindtree.prediction.entity.CountryEntity;
+import com.mindtree.prediction.entity.CustomerEntity;
+import com.mindtree.prediction.entity.InsurerName;
+import com.mindtree.prediction.entity.PaymentEntity;
+import com.mindtree.prediction.entity.PolicyEntity;
 import com.mindtree.prediction.service.PredictionService;
 
 @RestController
@@ -22,5 +27,27 @@ public class PredictionController {
 	public ResponseEntity<List<CountryEntity>> getCountryName() {
 		return service.getCountryName();
 	}
+	
+	@GetMapping("/getInsurerDetails/{insurer_code}")
+	public ResponseEntity<List<InsurerName>> getInsurerDetails(@PathVariable String insurer_code) {
+		return service.getInsurerDetails(insurer_code);
+	}
+	
+	@GetMapping("/getCustomersInfo")
+	public ResponseEntity<List<CustomerEntity>> getCustomerDetails() {
+		return service.getCustomerDetails();
+	}
+	
+	@GetMapping("/getPolicyDetails")
+	public ResponseEntity<List<PolicyEntity>> getPolicyDetails() {
+		return service.getPolicyDetails();
+	}	
+	
+	/*
+	 * @GetMapping("/getPaymentDetails/{paymentDate}") public
+	 * ResponseEntity<List<PaymentEntity>> getPaymentDetails(@PathVariable String
+	 * paymentDate) { return service.getPaymentDetails(paymentDate); }
+	 */
+	
 
 }
