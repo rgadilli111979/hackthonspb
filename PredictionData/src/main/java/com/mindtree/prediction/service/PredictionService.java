@@ -1,5 +1,7 @@
 package com.mindtree.prediction.service;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,6 +75,26 @@ public class PredictionService {
 		} else {
 			return new ResponseEntity<>(policyList, HttpStatus.NOT_FOUND);
 		}
+	}
+
+	public List<PolicyEntity> getPolivciesExpiringSoon(int days) {
+		long millis = System.currentTimeMillis();
+		java.util.Date date = new java.util.Date(millis);
+
+		java.util.Date udate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(udate.getTime());
+
+		System.out.println(date);
+		return policyRepo.findAllByPolicyExpirationDateBetween(sqlDate.toString(), addDays(sqlDate, days));
+
+		//return null;
+	}
+
+	private static String addDays(Date date, int days) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, days);
+		return new Date(c.getTimeInMillis()).toString();
 	}
 	
 }

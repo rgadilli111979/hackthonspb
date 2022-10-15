@@ -40,6 +40,11 @@ public class PredictionController {
 	@GetMapping("/getPolicyDetails")
 	public ResponseEntity<List<PolicyEntity>> getPolicyDetails() {
 		return service.getPolicyDetails();
-	}	
+	}
+	
+	@GetMapping("/expiringSoon/{days}")
+    public List<PolicyEntity> getPolivciesExpiringSoon(@PathVariable int days) {
+        return service.getPolivciesExpiringSoon(days);
+    }
 	
 }
