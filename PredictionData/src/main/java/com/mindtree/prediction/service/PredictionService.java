@@ -121,4 +121,34 @@ public class PredictionService {
 		return new ResponseEntity<>(dateRangeExpireCount, HttpStatus.OK);
 	}
 
+	public ResponseEntity<Map<String, Object>> getPieChartInfoForInsuranceType() {
+		Object[][] objList = policyRepo.getPieChartInfoForInsuranceType();
+		Map<String, Object> pieChatMap = new HashMap<String, Object>();
+
+		for (Object[] object : objList) {
+			if (((String) object[0]).trim().equals("1")) {
+				pieChatMap.put("1-Business Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("2")) {
+				pieChatMap.put("2-Compensation Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("3")) {
+				pieChatMap.put("3-Health Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("4")) {
+				pieChatMap.put("4-Home Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("5")) {
+				pieChatMap.put("5-Income Protection Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("6")) {
+				pieChatMap.put("6-Life Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("7")) {
+				pieChatMap.put("7-Pet Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("8")) {
+				pieChatMap.put("8-Travel Insurance", object[1]);
+			} else if (((String) object[0]).trim().equals("9")) {
+				pieChatMap.put("9-Vehicle Insurance", object[1]);
+			}
+
+		}
+		return new ResponseEntity<>(pieChatMap, HttpStatus.OK);
+
+	}
+
 }

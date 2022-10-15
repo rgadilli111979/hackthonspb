@@ -24,8 +24,6 @@ public class PolicyEntity implements Serializable {
 	@Column(name = "channelId")
 	private String channelId;
 
-	@Column(name = "insuranceType")
-	private Integer insuranceType;
 
 	@Column(name = "policyEffectiveDate")
 	private String policyEffectiveDate;
@@ -59,9 +57,6 @@ public class PolicyEntity implements Serializable {
 		return channelId;
 	}
 
-	public Integer getInsuranceType() {
-		return insuranceType;
-	}
 
 	public String getPolicyEffectiveDate() {
 		return policyEffectiveDate;
@@ -103,9 +98,6 @@ public class PolicyEntity implements Serializable {
 		this.channelId = channelId;
 	}
 
-	public void setInsuranceType(Integer insuranceType) {
-		this.insuranceType = insuranceType;
-	}
 
 	public void setPolicyEffectiveDate(String policyEffectiveDate) {
 		this.policyEffectiveDate = policyEffectiveDate;

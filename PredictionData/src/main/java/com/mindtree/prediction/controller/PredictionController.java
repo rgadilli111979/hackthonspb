@@ -53,4 +53,9 @@ public class PredictionController {
         return service.getExpiringSoonCountInDateRange();
     }
 	
+	@GetMapping("/getPieChartInfoForInsuranceType")
+	public ResponseEntity<Map<String,Object>> getPieChartInfoForInsuranceType() {
+		return service.getPieChartInfoForInsuranceType();
+	}
+	
 }
