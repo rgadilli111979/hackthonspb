@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mindtree.prediction.entity.CountryEntity;
 import com.mindtree.prediction.entity.CustomerEntity;
 import com.mindtree.prediction.entity.InsurerName;
-import com.mindtree.prediction.entity.PaymentEntity;
 import com.mindtree.prediction.entity.PolicyEntity;
 import com.mindtree.prediction.service.PredictionService;
 
@@ -43,11 +42,4 @@ public class PredictionController {
 		return service.getPolicyDetails();
 	}	
 	
-	/*
-	 * @GetMapping("/getPaymentDetails/{paymentDate}") public
-	 * ResponseEntity<List<PaymentEntity>> getPaymentDetails(@PathVariable String
-	 * paymentDate) { return service.getPaymentDetails(paymentDate); }
-	 */
-	
-
 }

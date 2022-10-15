@@ -11,13 +11,10 @@ import org.springframework.stereotype.Service;
 import com.mindtree.prediction.entity.CountryEntity;
 import com.mindtree.prediction.entity.CustomerEntity;
 import com.mindtree.prediction.entity.InsurerName;
-import com.mindtree.prediction.entity.PaymentEntity;
 import com.mindtree.prediction.entity.PolicyEntity;
-import com.mindtree.prediction.pojo.CountryPojo;
 import com.mindtree.prediction.repository.CountryRepo;
 import com.mindtree.prediction.repository.CustomerRepo;
 import com.mindtree.prediction.repository.InsurerRepo;
-import com.mindtree.prediction.repository.PaymentRepo;
 import com.mindtree.prediction.repository.PolicyRepo;
 
 @Service
@@ -35,8 +32,8 @@ public class PredictionService {
 	@Autowired
 	PolicyRepo policyRepo;
 	
-	@Autowired
-	PaymentRepo paymentRepo;
+//	@Autowired
+//	PaymentRepo paymentRepo;
 	
 	public ResponseEntity<List<CountryEntity>> getCountryName() {
 
@@ -78,15 +75,4 @@ public class PredictionService {
 		}
 	}
 	
-	/*
-	 * @SuppressWarnings({ "unchecked", "rawtypes" }) public
-	 * ResponseEntity<List<PaymentEntity>> getPaymentDetails(String paymentDate) {
-	 * Optional<PaymentEntity> paymentDetailsList =
-	 * paymentRepo.findById(paymentDate);
-	 * 
-	 * if (paymentDetailsList.isPresent()) { return new
-	 * ResponseEntity(paymentDetailsList.get(), HttpStatus.OK); } else { return new
-	 * ResponseEntity(paymentDetailsList.get(), HttpStatus.NOT_FOUND); } }
-	 */
-
 }
