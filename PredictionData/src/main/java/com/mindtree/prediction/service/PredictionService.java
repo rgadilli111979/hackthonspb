@@ -103,7 +103,7 @@ public class PredictionService {
 	private static String addDays(Date date, int days) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		if (days > 7) {
+		if (days >= 30) {
 			c.add(Calendar.MONTH, Math.round(days / 30));
 		} else {
 			c.add(Calendar.DATE, days);
