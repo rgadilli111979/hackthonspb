@@ -110,6 +110,7 @@ public class PredictionService {
 			c.add(Calendar.DATE, days);
 		}
 		return new Date(c.getTimeInMillis()).toString();
+		
 	}
 
 	public ResponseEntity<Map<String, Integer>> getExpiringSoonCountInDateRange() {
