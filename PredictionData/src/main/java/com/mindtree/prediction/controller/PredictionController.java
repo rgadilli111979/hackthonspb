@@ -58,4 +58,9 @@ public class PredictionController {
 		return service.getPieChartInfoForInsuranceType();
 	}
 	
+//	@GetMapping("/getSelectedPolicyDetails/{policyId}")
+//	public ResponseEntity<PolicyEntity> getSelectedPolicyDetails(@PathVariable String policyId) {
+//		return service.getSinglePolicyDetails(policyId);
+//	}
+	
 }

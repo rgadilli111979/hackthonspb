@@ -3,9 +3,11 @@ package com.mindtree.prediction.service;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -114,7 +116,7 @@ public class PredictionService {
 	}
 
 	public ResponseEntity<Map<String, Integer>> getExpiringSoonCountInDateRange() {
-		Map<String, Integer> dateRangeExpireCount = new HashMap<String, Integer>();
+		Map<String, Integer> dateRangeExpireCount = new LinkedHashMap<String, Integer>();
 
 		dateRangeExpireCount.put("1 WEEK", getPolivciesExpiringSoonPrivate(7).size());
 		dateRangeExpireCount.put("1 MONTH", getPolivciesExpiringSoonPrivate(32).size());
@@ -125,7 +127,7 @@ public class PredictionService {
 
 	public ResponseEntity<Map<String, Object>> getPieChartInfoForInsuranceType() {
 		Object[][] objList = policyRepo.getPieChartInfoForInsuranceType();
-		Map<String, Object> pieChatMap = new HashMap<String, Object>();
+		Map<String, Object> pieChatMap = new TreeMap<String, Object>();
 
 		for (Object[] object : objList) {
 			if (((String) object[0]).trim().equals("1")) {

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
 @Entity
 
 @Table(name = "policy")
@@ -53,6 +55,29 @@ public class PolicyEntity implements Serializable {
 		return areaType;
 	}
 
+	public String getInsuranceType () {
+		char polTypeCode = StringUtils.leftPad(this.policyNumber, 11, "0").charAt(6) ;
+		if (polTypeCode == '1') {
+			return "1-Business Insurance";
+		} else if (polTypeCode == '2') {
+			return "2-Compensation Insurance";
+		} else if (polTypeCode == '3') {
+			return "3-Health Insurance";
+		} else if (polTypeCode == '4') {
+			return "4-Home Insurance";
+		} else if (polTypeCode == '5') {
+			return "5-Income Protection Insurance";
+		} else if (polTypeCode == '6') {
+			return "6-Life Insurance";
+		} else if (polTypeCode == '7') {
+			return "7-Pet Insurance";
+		} else if (polTypeCode == '8') {
+			return "8-Travel Insurance";
+		} else if (polTypeCode == '9'){
+			return "9-Vehicle Insurance";
+		}
+		return "Dummy";
+	}
 	public String getChannelId() {
 		return channelId;
 	}
